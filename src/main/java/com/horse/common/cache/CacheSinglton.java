@@ -25,7 +25,7 @@ public class CacheSinglton {
      * 私有构造函数，初始化CacheManager(单例模式）。
      */
     private CacheSinglton() {
-        manager = CacheManager.create("config/ehcache/ehcache.xml");
+        manager = CacheManager.create("/ehcache/ehcache.xml");
     }
 
     /**
