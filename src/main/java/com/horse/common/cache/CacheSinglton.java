@@ -1,7 +1,12 @@
 package com.horse.common.cache;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
+
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * 缓存单例模式。提供获取缓存、关闭缓存方法
@@ -11,7 +16,9 @@ import net.sf.ehcache.CacheManager;
  * 
  */
 public class CacheSinglton {
-    /**
+    private static final String EHCACHE_XML = "ehcache/ehcache.xml";
+
+	/**
      * 缓存单例。
      */
     private static volatile CacheSinglton cacheSinglton = null;
@@ -25,7 +32,14 @@ public class CacheSinglton {
      * 私有构造函数，初始化CacheManager(单例模式）。
      */
     private CacheSinglton() {
-        manager = CacheManager.create("/ehcache/ehcache.xml");
+    	//InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(EHCACHE_XML);
+		try {
+			InputStream inputStream = new ClassPathResource(EHCACHE_XML).getInputStream();
+			manager = CacheManager.create(inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
     }
 
     /**
