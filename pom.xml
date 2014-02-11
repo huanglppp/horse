@@ -43,7 +43,7 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-		
+
 		<!-- spring4 依赖包 -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -66,6 +66,13 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.3</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -77,10 +84,10 @@
 			<version>${cglib.version}</version>
 		</dependency>
 		<dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm</artifactId>
-            <version>${asm.version}</version>
-        </dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>${asm.version}</version>
+		</dependency>
 
 		<!-- mybatis3 -->
 		<dependency>
@@ -156,7 +163,7 @@
 			<artifactId>jackson-module-jaxb-annotations</artifactId>
 			<version>${jackson-2-version}</version>
 		</dependency>
-		
+
 		<!-- servlet3 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -168,7 +175,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 		<!-- junit4 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -192,15 +199,15 @@
 		<finalName>horse</finalName>
 	</build>
 	<properties>
-        <servlet.version>3.0.1</servlet.version>
-        <spring.version>4.0.1.RELEASE</spring.version>
-        <aspectj.version>1.7.4</aspectj.version>
-        <asm.version>4.0</asm.version>
-        <cglib.version>3.0</cglib.version>
-        <jackson-2-version>2.3.0</jackson-2-version>
-        <junit.version>4.11</junit.version>
-        
-    </properties>
+		<servlet.version>3.0.1</servlet.version>
+		<spring.version>4.0.1.RELEASE</spring.version>
+		<aspectj.version>1.7.4</aspectj.version>
+		<asm.version>4.0</asm.version>
+		<cglib.version>3.0</cglib.version>
+		<jackson-2-version>2.3.0</jackson-2-version>
+		<junit.version>4.11</junit.version>
 
-	
+	</properties>
+
+
 </project>
