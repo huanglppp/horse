@@ -5,7 +5,10 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses(value = { DateUtilTest.class,StringUtilTest.class })
+@SuiteClasses(value = { 
+			DateUtilTest.class, 
+			FileUtilTest.class,
+			StringUtilTest.class })
 public class Util4Suite {
 
 }
