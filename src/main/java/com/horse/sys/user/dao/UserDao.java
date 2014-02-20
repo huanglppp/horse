@@ -1,5 +1,7 @@
 package com.horse.sys.user.dao;
 
+import java.util.List;
+
 import com.horse.sys.user.model.User;
 
  
@@ -55,4 +57,10 @@ public interface UserDao {
      * @return 返回保存后的用户对象唯一标识符
      */
     public User getUserByID(Integer id);
+    
+    /**
+     * 获取所有用户
+     * @return
+     */
+    public List<User> getAllUser();
 }

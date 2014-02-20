@@ -46,4 +46,9 @@
 	<select id="getByUserID" parameterType="Map" resultMap="UserMap">
 		select <include refid="userColumns"/> from sys_user u where u.userID = #{id}
 	</select> 
+	
+	<select id="getAllUser" resultMap="UserMap">
+		select <include refid="userColumns"/> from sys_user u
+	</select> 
+	
 </mapper> 

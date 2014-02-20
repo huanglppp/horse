@@ -1,5 +1,7 @@
 package com.horse.sys.user.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -29,5 +31,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 		return userDao.saveUser(user);
 	}
 	
+	public List<User> getUserForPage(){
+		return getAll();
+	}
 
 }

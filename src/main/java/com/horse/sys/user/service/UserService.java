@@ -1,6 +1,8 @@
 package com.horse.sys.user.service;
 
 
+import java.util.List;
+
 import com.horse.sys.user.model.User;
 
  
@@ -12,4 +14,6 @@ import com.horse.sys.user.model.User;
  */
 public interface UserService {
 	public int saveUser(User user);
+
+	public List<User> getUserForPage();
 }

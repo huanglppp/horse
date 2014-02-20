@@ -1,5 +1,7 @@
 package com.horse.sys.user.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.horse.common.basedao.BaseImplDao;
@@ -41,5 +43,8 @@ public class UserDaoImpl extends  BaseImplDao<User> implements UserDao {
 		return this.getByID(id);
 	}
  
-	 
+	@Override
+	public List<User> getAllUser(){
+		return this.getAll();
+	}
 }
