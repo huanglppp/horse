@@ -1,6 +1,7 @@
 package com.horse.common.service.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,4 +18,8 @@ public abstract class BaseServiceImpl <M extends Serializable> implements BaseSe
 		return baseImplDao.save(model);
 	}
 	
+	@Override
+	public List<M> getAll(){
+		return baseImplDao.getAll();
+	}
 }
