@@ -8,7 +8,7 @@ public class JacksonSinglton {
 
 	private ObjectMapper mapper;
 
-	private JacksonSinglton() {
+	private JacksonSinglton(){
 		mapper = new ObjectMapper();
 	}
 	
