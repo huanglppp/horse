@@ -3,17 +3,15 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.sameInstance;
 import static org.hamcrest.Matchers.equalTo;
-
 import static org.junit.Assert.assertThat;
 import net.sf.ehcache.Cache;
 
 import org.junit.Test;
 
+import static com.horse.common.constant.ConstantsTest.DICT_CACHE_NAME;
+import static com.horse.common.constant.ConstantsTest.CACHE_NAME;
+
 public class CacheSingltonTest {
-    private static final String CACHE_NAME="test";
-    
-    public static final String DICT_CACHE_NAME="dictcache";
-    
     @Test
     public void testGetInstance(){
         CacheSinglton cacheSinglton1 = CacheSinglton.getInstance();

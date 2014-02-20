@@ -1,6 +1,6 @@
 package com.horse.common.cache;
 
-import static com.horse.common.cache.CacheSingltonTest.DICT_CACHE_NAME;
+ 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -11,6 +11,9 @@ import java.util.List;
 import net.sf.ehcache.Element;
 
 import org.junit.Test;
+
+import static com.horse.common.constant.ConstantsTest.DICT_CACHE_NAME;
+ 
 
 public class CacheUtilTest {
      

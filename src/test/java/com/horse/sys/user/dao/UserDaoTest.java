@@ -1,8 +1,17 @@
 package com.horse.sys.user.dao;
 
+import static com.horse.common.constant.ConstantsTest.IS_VALID;
+import static com.horse.common.constant.ConstantsTest.USER_CODE;
+import static com.horse.common.constant.ConstantsTest.USER_NAME;
+import static com.horse.common.constant.ConstantsTest.USER_PASSWORD;
+import static com.horse.common.constant.ConstantsTest.USER_TYPE;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
+
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -14,11 +23,7 @@ import com.horse.AbstractBaseSpringTest;
 import com.horse.sys.user.model.User;
 
 public class UserDaoTest extends AbstractBaseSpringTest {
-	private static final String USER_TYPE = "1";
-	private static final String IS_VALID = "1";
-	private static final String USER_PASSWORD = "111111";
-	private static final String USER_CODE = "longhuangaa";
-	private static final String USER_NAME = "黄龙";
+	
 	
 	private static final String USER_CODE_UPDATE = "ding";
 
@@ -86,6 +91,14 @@ public class UserDaoTest extends AbstractBaseSpringTest {
 		
 		User userTemp1 = userDao.getUserByID(user.getUserID());
 		assertThat("",userTemp1.getUserID(), equalTo(userTemp.getUserID()));
+	}
+	
+	@Test
+	public void testGetAllUser() {
+		saveUser();
+		List<User> listUser =  userDao.getAllUser();
+		assertThat("",listUser, notNullValue());
+		assertThat("",listUser.size(), greaterThanOrEqualTo(1));
 	}
 	
 	private int saveUser() {

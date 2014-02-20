@@ -11,12 +11,13 @@ import org.junit.Test;
 import com.horse.AbstractBaseSpringTest;
 import com.horse.sys.user.model.User;
 
+import static com.horse.common.constant.ConstantsTest.USER_CODE;
+import static com.horse.common.constant.ConstantsTest.USER_NAME;
+import static com.horse.common.constant.ConstantsTest.USER_PASSWORD;
+import static com.horse.common.constant.ConstantsTest.IS_VALID;
+import static com.horse.common.constant.ConstantsTest.USER_TYPE;
+
 public class UserServiceTest extends AbstractBaseSpringTest {
-	private static final String USER_TYPE = "1";
-	private static final String IS_VALID = "1";
-	private static final String USER_PASSWORD = "111111";
-	private static final String USER_CODE = "longhuangaa";
-	private static final String USER_NAME = "黄龙";
 	
 	@Resource
 	private UserService userService;
