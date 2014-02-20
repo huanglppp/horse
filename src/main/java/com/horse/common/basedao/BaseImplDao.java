@@ -29,6 +29,7 @@ public class BaseImplDao<M extends Serializable> {
 	private final static String SAVE = ".save";
 	private final static String UPDATE = ".update";
 	private final static String DELETE = ".delete";
+	private final static String GET_ALL = ".getAll";
 	private final static String GET_BY = ".getBy";
 	private final static String ID = "ID";
 	private final static String CODE = "Code";
@@ -61,7 +62,12 @@ public class BaseImplDao<M extends Serializable> {
     	this.persistentSimpleName = clazz.getSimpleName();
     	//原生态api:this.persistentClass = (Class<M>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
-
+    
+    /**
+     * 获取保存，更新，删除，查询所有 的 mybatis sql id
+     * @param operation
+     * @return
+     */
     private String getOperationSQLName(String operation){
     	StringBuilder builder = new StringBuilder();
     	builder.append(persistentName);
@@ -70,6 +76,12 @@ public class BaseImplDao<M extends Serializable> {
     	return builder.toString();
     }
     
+    /**
+     * 获取 根据ID和code 的 mybatis sql id
+     * @param operationGetByName
+     * @param operationSecondName
+     * @return
+     */
     private String getOperationSQLName(String operationGetByName,String operationSecondName){
     	StringBuilder builder = new StringBuilder();
     	builder.append(persistentName);
@@ -101,7 +113,7 @@ public class BaseImplDao<M extends Serializable> {
      * @param id
      * @return
      */
-    public int delete(Object id){
+    public int delete(final Object id){
     	return baseMyBatisDao.delete(getOperationSQLName(DELETE), id);
     }
     
@@ -110,7 +122,7 @@ public class BaseImplDao<M extends Serializable> {
      * @param id
      * @return
      */
-    public M getByID(Object id){
+    public M getByID(final Object id){
     	Map<String,Object> parameterMap = new HashMap<String,Object>();
 		parameterMap.put("id", id);
     	return baseMyBatisDao.get(getOperationSQLName(GET_BY,ID), parameterMap);
@@ -121,11 +133,19 @@ public class BaseImplDao<M extends Serializable> {
      * @param code
      * @return
      */
-    public M getByCode(String code){
+    public M getByCode(final String code){
     	Map<String,Object> parameterMap = new HashMap<String,Object>();
 		parameterMap.put("code", code);
     	return baseMyBatisDao.get(getOperationSQLName(GET_BY,CODE), parameterMap);
     }
+    
+    /**
+     * 获取所有数据表
+     * @return
+     */
+    public List<M> getAll() {
+    	return baseMyBatisDao.query(getOperationSQLName(GET_ALL));
+	}
     
     /**
      * 根据statement查询。
@@ -192,5 +212,7 @@ public class BaseImplDao<M extends Serializable> {
     public Long queryForCount(final String statement, final Map<String,Object> parameter) {
         return baseMyBatisDao.queryForCount(statement, parameter);
     }
+
+	
     
 }
