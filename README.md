@@ -10,18 +10,16 @@
 8、 集成activiti5.14            （工作流）
 9、 集成spring security 3.2.0   （安全框架）
 10、集成JMock2.6.0			    （mock）
-11、集成maven3.1				 (部署打包)
+11、集成Jackson					（json处理框架）
+12、集成maven3.1				 (部署打包)
 
 基础功能都包括在common包下:
-activiti    工作流最基本的服务，待改进
-basedao		所有dao的父类
+basedao		dao的基类
 cache       缓存
-dao         操作数据库基本包
+constant    系统常量
+dao         dao实现类
+exception   自定义异常
+jackson     jackson json工具类
+service     service基类
 util		常用的工具类
 
-
-security相关功能在security包下
-
-权限测试用的数据在：/config/spring/测试数据.sql
-
-web		               安全框架验证流程相关控制器
