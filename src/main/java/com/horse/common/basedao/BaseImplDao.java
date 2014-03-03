@@ -30,15 +30,22 @@ public class BaseImplDao<M extends Serializable> {
 	private final static String UPDATE = ".update";
 	private final static String DELETE = ".delete";
 	private final static String GET_ALL = ".getAll";
+	
+	//getByID,getByCode
 	private final static String GET_BY = ".getBy";
 	private final static String ID = "ID";
 	private final static String CODE = "Code";
+	
+	//
+	private final static String QUERY = ".query";
+	private final static String FOR_PAGE = "ForPage";
+	private final static String FOR_COUNT = "ForCount";
 	
     /**
      * mybatis查询实现类。
      */
     @Resource
-    private BaseMyBatisDao baseMyBatisDao;
+    protected BaseMyBatisDao baseMyBatisDao;
 
     /**
      * 持久对象包名 
@@ -147,6 +154,53 @@ public class BaseImplDao<M extends Serializable> {
     	return baseMyBatisDao.query(getOperationSQLName(GET_ALL));
 	}
     
+    
+    public List<M> queryForPage(final int offset,final int limit) {
+        return queryForPage(null,offset,limit);
+    }
+
+    /**
+     * 根据statement查询条件过滤并分页持久化集合。
+     * 例如：offset=0，limit=5 从第1行开始，取5条数据。
+     *       offset=5，limit=3 从第6行开始，取3条数据。
+     * @param statement
+     *            mybatis查询语句
+     * @param parameter
+     *            过滤条件
+     * @param offset
+     *            分页开始处
+     * @param limit
+     *            要获取的集合数大小
+     * @return 返回持久化对象集合
+     */
+    public List<M> queryForPage(final Map<String,Object> parameter, final int offset,final int limit) {
+        return baseMyBatisDao.queryForPage(getOperationSQLName(QUERY,FOR_PAGE), parameter, offset,limit);
+    }
+
+    /**
+     * 查询持久化对象集合总数。
+     * 
+     * @param statement
+     *            mybatis查询语句
+     * @return 返回持久化对象总数
+     */
+    public Long queryForCount() {
+        return queryForCount(null);
+    }
+    
+    /**
+     * 查询持久化对象集合总数。
+     * 
+     * @param statement
+     *            mybatis查询语句
+     * @param parameter
+     *            过滤条件
+     * @return 返回持久化对象总数
+     */
+    public Long queryForCount(final Map<String,Object> parameter) {
+        return baseMyBatisDao.queryForCount(getOperationSQLName(QUERY,FOR_COUNT), parameter);
+    }
+
     /**
      * 根据statement查询。
      * 
@@ -170,49 +224,5 @@ public class BaseImplDao<M extends Serializable> {
     public List<M> query(final String statement, final Map<String,Object> parameter) {
         return baseMyBatisDao.query(statement, parameter);
     }
-
-    /**
-     * 根据statement查询条件过滤并分页持久化集合。
-     * 例如：offset=0，limit=5 从第1行开始，取5条数据。
-     *       offset=5，limit=3 从第6行开始，取3条数据。
-     * @param statement
-     *            mybatis查询语句
-     * @param parameter
-     *            过滤条件
-     * @param offset
-     *            分页开始处
-     * @param limit
-     *            要获取的集合数大小
-     * @return 返回持久化对象集合
-     */
-    public List<M> queryForPage(final String statement, final Map<String,Object> parameter, final int offset,final int limit) {
-        return baseMyBatisDao.queryForPage(statement, parameter, offset,limit);
-    }
-
-    /**
-     * 查询持久化对象集合总数。
-     * 
-     * @param statement
-     *            mybatis查询语句
-     * @return 返回持久化对象总数
-     */
-    public Long queryForCount(final String statement) {
-        return queryForCount(statement);
-    }
-    
-    /**
-     * 查询持久化对象集合总数。
-     * 
-     * @param statement
-     *            mybatis查询语句
-     * @param parameter
-     *            过滤条件
-     * @return 返回持久化对象总数
-     */
-    public Long queryForCount(final String statement, final Map<String,Object> parameter) {
-        return baseMyBatisDao.queryForCount(statement, parameter);
-    }
-
-	
     
 }
