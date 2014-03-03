@@ -1,0 +1,31 @@
+.Table {
+	display: table;
+	width: 100%;
+}
+
+.Title {
+	display: table-caption;
+	text-align: center;
+	font-weight: bold;
+	font-size: larger;
+	vertical-align: middle;
+}
+
+.Heading {
+	display: table-row;
+	font-weight: bold;
+	text-align: center;
+	background-color: #C9C9C9;
+}
+.Row {
+	display: table-row;
+}
+
+.Cell {
+	display: table-cell;
+	border: solid;
+	border-width: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	vertical-align: middle;
+}
