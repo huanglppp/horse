@@ -11,7 +11,9 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -99,6 +101,26 @@ public class UserDaoTest extends AbstractBaseSpringTest {
 		List<User> listUser =  userDao.getAllUser();
 		assertThat("",listUser, notNullValue());
 		assertThat("",listUser.size(), greaterThanOrEqualTo(1));
+	}
+	
+	@Test
+	public void testQueryUserForPage(){
+		saveUser();
+		Map<String,Object> parameter = new HashMap<String,Object>();
+		parameter.put("userCode", USER_CODE);
+		parameter.put("userName", USER_NAME);
+		List<User> listUser = userDao.queryUserForPage(parameter, 0, 10);
+		assertThat("",listUser.size(), greaterThanOrEqualTo(1));
+	}
+	
+	@Test
+	public void testQueryUserForCount(){
+		saveUser();
+		Map<String,Object> parameter = new HashMap<String,Object>();
+		parameter.put("userCode", USER_CODE);
+		parameter.put("userName", USER_NAME);
+		Long count = userDao.queryUserForCount(parameter);
+		assertThat("",count, equalTo(1L));
 	}
 	
 	private int saveUser() {

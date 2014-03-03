@@ -1,12 +1,19 @@
 package com.horse.common.jackson;
 
+import static com.horse.common.constant.ConstantsTest.IS_VALID;
+import static com.horse.common.constant.ConstantsTest.USER_CODE;
+import static com.horse.common.constant.ConstantsTest.USER_NAME;
+import static com.horse.common.constant.ConstantsTest.USER_PASSWORD;
+import static com.horse.common.constant.ConstantsTest.USER_TYPE;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -14,12 +21,6 @@ import org.springframework.core.io.Resource;
 import com.horse.common.exception.BaseException;
 import com.horse.common.util.FileUtil;
 import com.horse.sys.user.model.User;
-
-import static com.horse.common.constant.ConstantsTest.USER_CODE;
-import static com.horse.common.constant.ConstantsTest.USER_NAME;
-import static com.horse.common.constant.ConstantsTest.USER_PASSWORD;
-import static com.horse.common.constant.ConstantsTest.IS_VALID;
-import static com.horse.common.constant.ConstantsTest.USER_TYPE;
 
 public class JacksonUtilTest {
 	private static final String USER_MODIFY_FILE = "jackson/user-modify.json";
@@ -46,15 +47,8 @@ public class JacksonUtilTest {
 	}
 	
 	@Test
-	@Ignore
 	public void testWriteObjectToFile() throws IOException, BaseException {
-		User user = new User();
-		user.setUserID(1);
-		user.setUserCode(USER_CODE);
-		user.setUserName(USER_NAME);
-		user.setUserPassword(USER_PASSWORD);
-		user.setIsValid(IS_VALID);
-		user.setUserType(USER_TYPE);
+		User user = createUser();
 		
 		File toFile =  FileUtil.createClassPathFile(USER_MODIFY_FILE);
 		JacksonUtil.writeObjectToFile(toFile, user);
@@ -63,5 +57,26 @@ public class JacksonUtilTest {
 		File jsonFile = resource.getFile();
 		User user1 = JacksonUtil.readObjectFromFile(jsonFile, User.class);
 		assertThat("默认缓存名称为是" , user1.getUserCode(), equalTo(USER_CODE));
+	}
+	
+	@Test
+	public void testWriteObjectToJsonString_List() throws IOException, BaseException {
+		List<User> listUser = new ArrayList<User>();
+		User user = createUser();
+		listUser.add(user);
+		 
+		String userJsonString = JacksonUtil.writeObjectToJsonString(listUser);
+		assertThat("默认缓存名称为是" , userJsonString.indexOf(USER_CODE), greaterThanOrEqualTo(1));
+	}
+
+	private User createUser() {
+		User user = new User();
+		user.setUserID(1);
+		user.setUserCode(USER_CODE);
+		user.setUserName(USER_NAME);
+		user.setUserPassword(USER_PASSWORD);
+		user.setIsValid(IS_VALID);
+		user.setUserType(USER_TYPE);
+		return user;
 	}
 }
