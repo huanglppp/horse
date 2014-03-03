@@ -1,6 +1,7 @@
 package com.horse.sys.user.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -47,4 +48,15 @@ public class UserDaoImpl extends  BaseImplDao<User> implements UserDao {
 	public List<User> getAllUser(){
 		return this.getAll();
 	}
+	
+	@Override
+	public List<User> queryUserForPage(Map<String,Object> parameter,int offset,int limit){
+		return this.queryForPage(parameter, offset, limit);
+	}
+	
+	@Override
+	public Long queryUserForCount(Map<String,Object> parameter){
+		return this.queryForCount(parameter);
+	}
+	 
 }

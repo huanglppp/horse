@@ -1,8 +1,10 @@
 package com.horse.sys.user.service;
 
 
-import java.util.List;
+ 
+import java.util.Map;
 
+import com.horse.common.service.BaseService;
 import com.horse.sys.user.model.User;
 
  
@@ -12,8 +14,8 @@ import com.horse.sys.user.model.User;
  * @author longhuang
  *
  */
-public interface UserService {
+public interface UserService extends BaseService<User> {
 	public int saveUser(User user);
 
-	public List<User> getUserForPage();
+	public String getUserForPage(Map<String,Object> parameterMap,int pageSize,int pageNum);
 }

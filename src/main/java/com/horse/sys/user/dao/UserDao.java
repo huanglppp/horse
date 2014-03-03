@@ -1,6 +1,7 @@
 package com.horse.sys.user.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.horse.sys.user.model.User;
 
@@ -63,4 +64,20 @@ public interface UserDao {
      * @return
      */
     public List<User> getAllUser();
+    
+    /**
+     * 用户分页查询
+     * @param parameter
+     * @param offset
+     * @param limit
+     * @return
+     */
+    public List<User> queryUserForPage(Map<String,Object> parameter,int offset,int limit);
+    
+    /**
+     * 查询总数
+     * @param parameter
+     * @return
+     */
+    public Long queryUserForCount(Map<String,Object> parameter);
 }

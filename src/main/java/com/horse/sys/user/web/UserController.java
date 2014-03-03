@@ -1,20 +1,24 @@
 package com.horse.sys.user.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.horse.common.web.BaseController;
 import com.horse.sys.user.model.User;
 import com.horse.sys.user.service.UserService;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
 	@Resource
 	private UserService userService;
 	
@@ -25,8 +29,22 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping("/getUserList")
-	public List<User> getUserList() {
-		return userService.getUserForPage();
+	/**
+	 * 
+	 * @param userCode 用户编码
+	 * @param userName 用户名
+	 * @param pageSize 每页多少行
+	 * @param pageNum 第几页
+	 * @return json字符串
+	 */
+	@RequestMapping(value="/getUserList",method=RequestMethod.GET,produces="text/html;charset=UTF-8")
+	public String getUserList(@RequestParam("userCode") String userCode,
+			@RequestParam("userName") String userName,
+			@RequestParam(value = "pageSize",required=false,defaultValue="10") int pageSize,
+			@RequestParam(value = "pageNum",required=false,defaultValue="1") int pageNum) {
+		Map<String,Object> parameterMap = new HashMap<String,Object>();
+		parameterMap.put("userCode", userCode);
+		parameterMap.put("userName", userName);
+		return userService.getUserForPage(parameterMap,pageSize,pageNum);
 	}
 }

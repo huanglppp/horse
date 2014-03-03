@@ -27,7 +27,7 @@
 	</insert> 
 	
 	<!-- 删除用户 -->
-	<insert id="deleteUser" parameterType="Object">
+	<insert id="deleteUser" parameterType="User">
 		delete from sys_user where userID=#{id}
 	</insert> 
 
@@ -38,12 +38,12 @@
 	</sql>
 
 	<!-- 根据用户编号查询用户 -->
-	<select id="getByUserCode" parameterType="Map" resultMap="UserMap">
+	<select id="getByUserCode" parameterType="java.util.Map" resultMap="UserMap">
 		select <include refid="userColumns"/> from sys_user u where u.userCode = #{code}
 	</select> 
 	 
 	<!-- 根据用户编号查询用户 -->
-	<select id="getByUserID" parameterType="Map" resultMap="UserMap">
+	<select id="getByUserID" parameterType="java.util.Map" resultMap="UserMap">
 		select <include refid="userColumns"/> from sys_user u where u.userID = #{id}
 	</select> 
 	
@@ -51,4 +51,30 @@
 		select <include refid="userColumns"/> from sys_user u
 	</select> 
 	
+	
+	<!-- 用户分页查询 -->
+	<select id="queryUserForPage" parameterType="java.util.Map" resultMap="UserMap">
+		select <include refid="userColumns"/> from sys_user u 
+		<where>
+			<if test="userCode != null and userCode.trim()!=''">
+				 and u.userCode = #{userCode}
+			</if>
+			<if test="userName !=null and userName.trim()!=''">
+				and u.userName like '${userName}%'
+			</if>
+		</where>
+	</select> 
+	
+	<!--查询用户总数 -->
+	<select id="queryUserForCount" parameterType="java.util.Map" resultType="long">
+		select count(1) from sys_user u 
+		<where>
+			<if test="userCode != null and userCode.trim()!=''">
+				 and u.userCode = #{userCode}
+			</if>
+			<if test="userName !=null and userName.trim()!=''">
+				and u.userName like '${userName}%'
+			</if>
+		</where>
+	</select>
 </mapper> 
