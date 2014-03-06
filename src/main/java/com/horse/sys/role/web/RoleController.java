@@ -1,4 +1,4 @@
-package com.horse.sys.user.web;
+package com.horse.sys.role.web;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.horse.common.web.BaseController;
-import com.horse.sys.user.service.UserService;
+import com.horse.sys.role.service.RoleService;
 
 @RestController
-@RequestMapping("/user")
-public class UserController extends BaseController {
+@RequestMapping("/role")
+public class RoleController extends BaseController {
 	@Resource
-	private UserService userService;
+	private RoleService roleService;
 	
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/user/list");
+		mv.setViewName("/role/list");
 		return mv;
 	}
 	
 	/**
 	 * 
-	 * @param userCode 用户编码
-	 * @param userName 用户名
+	 * @param roleCode 用户编码
+	 * @param roleName 用户名
 	 * @param pageSize 每页多少行
 	 * @param currentPage 第几页
 	 * @return json字符串
 	 */
-	@RequestMapping(value="/getUserList",method=RequestMethod.GET,produces="text/html;charset=UTF-8")
-	public String getUserList(@RequestParam("userCode") String userCode,
-			@RequestParam("userName") String userName,
+	@RequestMapping(value="/getRoleList",method=RequestMethod.GET,produces="text/html;charset=UTF-8")
+	public String getroleList(@RequestParam("roleCode") String roleCode,
+			@RequestParam("roleName") String roleName,
 			@RequestParam(value = "pageSize",required=false,defaultValue="10") int pageSize,
 			@RequestParam(value = "currentPage",required=false,defaultValue="1") int currentPage) {
 		Map<String,Object> parameterMap = new HashMap<String,Object>();
-		parameterMap.put("userCode", userCode);
-		parameterMap.put("userName", userName);
-		return userService.queryForPage(parameterMap, pageSize,currentPage);
+		parameterMap.put("roleCode", roleCode);
+		parameterMap.put("roleName", roleName);
+		return roleService.queryForPage(parameterMap,pageSize,currentPage);
 	}
 }

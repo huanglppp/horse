@@ -55,7 +55,7 @@ public class UserDaoImpl extends  BaseImplDao<User> implements UserDao {
 	}
 	
 	@Override
-	public Long queryUserForCount(Map<String,Object> parameter){
+	public int queryUserForCount(Map<String,Object> parameter){
 		return this.queryForCount(parameter);
 	}
 	 

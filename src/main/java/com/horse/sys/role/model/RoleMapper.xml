@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper文件最好放在与Dao接口同一目录下 -->
+<mapper namespace="com.horse.sys.role.model.Role">
+	<!-- 定义数据库字段与实体对象的映射关系 -->
+	<resultMap type="Role" id="RoleMap">
+		<id column="RoleID" property="roleID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+		<id column="RoleCode" property="roleCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<id column="RoleName" property="roleName" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<id column="ParentRoleID" property="parentRoleID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+		<id column="Remark" property="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 保存角色 -->
+	<insert id="saveRole" parameterType="Role" useGeneratedKeys="true" keyProperty="userID" >
+		INSERT INTO SYS_ROLE(RoleCode,RoleName,ParentRoleID,Remark) 
+		VALUES(#{roleCode},#{roleName},#{parentRoleID},#{remark})
+	</insert> 
+	 <!-- 用户共用列 -->
+	<sql id="roleColumns">
+		r.RoleID, r.RoleCode, r.RoleName,
+		r.ParentRoleID, r.Remark
+	</sql>
+	
+	 <!-- 用户分页查询 -->
+	<select id="queryRoleForPage" parameterType="java.util.Map" resultMap="RoleMap">
+		select <include refid="roleColumns"/> from SYS_ROLE r 
+		<where>
+			 
+			<if test="roleName !=null and roleName.trim()!=''">
+				and r.RoleName like #{roleName}
+			</if>
+		</where>
+	</select> 
+	<!--查询用户总数 -->
+	<select id="queryRoleForCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from SYS_ROLE r 
+		<where>
+			<if test="roleName !=null and roleName.trim()!=''">
+				and r.RoleName like #{roleName}
+			</if>
+		</where>
+	</select>
+</mapper> 

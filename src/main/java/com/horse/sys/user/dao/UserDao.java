@@ -79,5 +79,5 @@ public interface UserDao {
      * @param parameter
      * @return
      */
-    public Long queryUserForCount(Map<String,Object> parameter);
+    public int queryUserForCount(Map<String,Object> parameter);
 }

@@ -60,20 +60,20 @@
 				 and u.userCode = #{userCode}
 			</if>
 			<if test="userName !=null and userName.trim()!=''">
-				and u.userName like '${userName}%'
+				and u.userName like #{userName}
 			</if>
 		</where>
 	</select> 
 	
 	<!--查询用户总数 -->
-	<select id="queryUserForCount" parameterType="java.util.Map" resultType="long">
+	<select id="queryUserForCount" parameterType="java.util.Map" resultType="int">
 		select count(1) from sys_user u 
 		<where>
 			<if test="userCode != null and userCode.trim()!=''">
 				 and u.userCode = #{userCode}
 			</if>
 			<if test="userName !=null and userName.trim()!=''">
-				and u.userName like '${userName}%'
+				and u.userName like #{userName}
 			</if>
 		</where>
 	</select>
