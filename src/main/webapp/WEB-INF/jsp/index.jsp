@@ -8,7 +8,8 @@
   <body>
        <div>
        		<ul>
-       			<li><a href="${pageContext.request.contextPath}/user/list">用户列表22</a></li>
+       			<li><a href="${pageContext.request.contextPath}/user/list">用户列表</a></li>
+       			 <li><a href="${pageContext.request.contextPath}/role/list">角色列表</a></li>
        		</ul>
        </div>
   </body>

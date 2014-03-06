@@ -1,3 +1,4 @@
+
 .foot_page {
 	margin: 10px auto;
 	clear: both;
@@ -12,14 +13,7 @@
 	float: left;
 }
 
-.foot_page tr {
-	height: 30px;
-}
-
-.foot_page tr td {
-	color: #666;
-	padding-bottom: 8px;
-}
+ 
 
 .foot_page .page_left .number {
 	margin: 0 3px;
@@ -57,6 +51,7 @@
 
 .foot_page .page_nav ul {
 	float: right;
+	list-style-type: none;
 }
 
 .foot_page .page_nav li {
@@ -65,6 +60,8 @@
 	text-align: center;
 	cursor: pointer;
 	line-height: 24px;
+	
+ 
 }
 
 .foot_page .page_nav li.page_0 {
@@ -76,10 +73,10 @@
 }
 
 .foot_page .page_nav li.page_0:hover {
-	background: url("../images/page_01_hover.gif") repeat-x scroll 1px 0
+	background: url("../images/page_01_show.gif") repeat-x scroll 1px 0
 		transparent;
 	padding: 0 7px;
-	color: #fff;
+	color: #333;
 	border: 1px solid #bec3c9;
 }
 
