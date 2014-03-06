@@ -12,12 +12,10 @@ import javax.annotation.Resource;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.horse.AbstractBaseSpringTest;
 import com.horse.sys.role.model.Role;
-import com.horse.sys.user.model.User;
 
 public class RoleDaoTest extends AbstractBaseSpringTest {
 	private Role role =  null;
