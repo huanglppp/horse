@@ -3,6 +3,9 @@ package com.horse.sys.user.service;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.junit.Before;
@@ -41,5 +44,12 @@ public class UserServiceTest extends AbstractBaseSpringTest {
 		int i = userService.saveUser(user);
 		assertThat("", i, not(0));
 		assertThat("", i, not(-1));
+	}
+	
+	@Test
+	public void testGetUserForPage(){
+		Map<String,Object> parameterMap = new HashMap<String,Object>();
+		String jasonString = userService.queryForPage(parameterMap,5, 3);
+		System.out.println(jasonString);
 	}
 }
