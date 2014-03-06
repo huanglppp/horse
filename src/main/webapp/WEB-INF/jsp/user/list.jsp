@@ -5,12 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>欢迎使用HTML5</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/table.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/page.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery-2.1.0.min.js"></script>
+<%@ include file="../inc/header.jsp"%> 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/user/list.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/page.js"></script>  
- </head>
+</head>
 <body>
 	<div>
 		用户编码：<input type="text" id="userCode">
