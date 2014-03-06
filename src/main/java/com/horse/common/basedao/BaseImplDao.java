@@ -184,7 +184,7 @@ public class BaseImplDao<M extends Serializable> {
      *            mybatis查询语句
      * @return 返回持久化对象总数
      */
-    public Long queryForCount() {
+    public int queryForCount() {
         return queryForCount(null);
     }
     
@@ -197,7 +197,7 @@ public class BaseImplDao<M extends Serializable> {
      *            过滤条件
      * @return 返回持久化对象总数
      */
-    public Long queryForCount(final Map<String,Object> parameter) {
+    public int queryForCount(final Map<String,Object> parameter) {
         return baseMyBatisDao.queryForCount(getOperationSQLName(QUERY,FOR_COUNT), parameter);
     }
 
