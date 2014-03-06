@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.horse.common.basedao.BaseImplDao;
 import com.horse.common.jackson.JacksonUtil;
 import com.horse.common.service.BaseService;
-import com.horse.sys.role.model.Role;
 
 public abstract class BaseServiceImpl<M extends Serializable> implements
 		BaseService<M> {
