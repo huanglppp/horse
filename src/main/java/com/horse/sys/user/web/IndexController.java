@@ -13,7 +13,7 @@ public class IndexController {
 	 * 首页。
 	 * 
 	 */
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getIndexPage() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("index");

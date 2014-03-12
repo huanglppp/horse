@@ -1,5 +1,6 @@
 package com.horse.sys.user.web;
 
+ 
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,4 +46,5 @@ public class UserController extends BaseController {
 		parameterMap.put("userName", userName);
 		return userService.queryForPage(parameterMap, pageSize,currentPage);
 	}
+ 
 }
