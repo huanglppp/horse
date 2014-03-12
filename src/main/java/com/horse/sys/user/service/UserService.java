@@ -9,5 +9,5 @@ import com.horse.sys.user.model.User;
  *
  */
 public interface UserService extends BaseService<User> {
-	public int saveUser(User user);
+	public void saveUser(User user) throws Exception;
 }
