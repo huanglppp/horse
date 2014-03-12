@@ -2,7 +2,6 @@ package com.horse.sys.user.service;
 
 import static com.horse.common.constant.ConstantsTest.IS_VALID;
 import static com.horse.common.constant.ConstantsTest.USER_CODE;
-import static com.horse.common.constant.ConstantsTest.USER_ID;
 import static com.horse.common.constant.ConstantsTest.USER_NAME;
 import static com.horse.common.constant.ConstantsTest.USER_PASSWORD;
 import static com.horse.common.constant.ConstantsTest.USER_TYPE;
@@ -10,6 +9,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 import org.jmock.Expectations;
+import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Before;
 import org.junit.Rule;
@@ -27,12 +27,13 @@ public class UserServiceMockTest extends AbstractBaseSpringTest{
     @Rule
     public JUnitRuleMockery context = new JUnitRuleMockery();
 
+    @Mock
     private UserDao userDao;
+    
     private User user;
  
     @Before
     public void init(){
-    	userDao = context.mock(UserDao.class);
     	user = new User();
     	user.setUserCode(USER_CODE);
 		user.setUserName(USER_NAME);
@@ -48,15 +49,22 @@ public class UserServiceMockTest extends AbstractBaseSpringTest{
         context.checking(new Expectations() {
             {
                 allowing(userDao).saveUser(with(any(User.class)));
-                will(returnValue(USER_ID));
+                allowing(userDao).getUserByCode(with(any(String.class)));will(returnValue(user));
+                
             }
         });
         userService = new UserServiceImpl();
         ReflectionTestUtils.setField(userService, "userDao", userDao);  
-        int pk = userService.saveUser(user);
-
-        assertThat("用户名", pk, equalTo(USER_ID));
+        //测试保存的思路是：先保存，如果保存成功，则可以查询出来，调用查询方法
+        //保存
+        userService.saveUser(user);
+        
+        //查询
+        User user2 = userService.getUserByCode(USER_CODE);
+        
+        assertThat("用户名", user2.getUserCode(), equalTo(user.getUserCode()));
     }
 
-    
+   
 }
+

@@ -1,6 +1,6 @@
 package com.horse.sys.user.service;
 
-import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 import java.util.HashMap;
@@ -40,16 +40,17 @@ public class UserServiceTest extends AbstractBaseSpringTest {
 	}
 	
 	@Test
-	public void testSaveUser(){
-		int i = userService.saveUser(user);
-		assertThat("", i, not(0));
-		assertThat("", i, not(-1));
+	public void testSaveUser() throws Exception{
+		userService.saveUser(user);
+		
+		User user2 = userService.getByCode(USER_CODE);
+		assertThat("", user.getUserCode(), equalTo(user2.getUserCode()));
 	}
 	
-	@Test
-	public void testGetUserForPage(){
-		Map<String,Object> parameterMap = new HashMap<String,Object>();
-		String jasonString = userService.queryForPage(parameterMap,5, 3);
-		System.out.println(jasonString);
-	}
+//	@Test
+//	public void testGetUserForPage(){
+//		Map<String,Object> parameterMap = new HashMap<String,Object>();
+//		String jasonString = userService.queryForPage(parameterMap,5, 3);
+//		System.out.println(jasonString);
+//	}
 }
