@@ -10,6 +10,8 @@ public interface BaseService<M extends Serializable> {
 	public int save(M model);
  
 	public List<M> getAll();
+	
+	public M getByCode(String code);
 	 
 	public String queryForPage(final Map<String,Object> parameter, final int pageSize,final int currentPage);
 	 

@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.horse.common.basedao.BaseImplDao;
 import com.horse.common.jackson.JacksonUtil;
 import com.horse.common.service.BaseService;
-
+@Transactional
 public abstract class BaseServiceImpl<M extends Serializable> implements
 		BaseService<M> {
 
@@ -27,6 +28,10 @@ public abstract class BaseServiceImpl<M extends Serializable> implements
 		return baseImplDao.getAll();
 	}
 
+	@Override
+	public M getByCode(String code){
+		return baseImplDao.getByCode(code);
+	}
 	 
 	
 	@Override 
