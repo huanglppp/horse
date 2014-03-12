@@ -8,7 +8,7 @@
 6、 集成ehcache2.7.5            （缓存）
 7、 集成slf4j1.7.5              （日志）
 8、 集成activiti5.14            （工作流）
-9、 集成spring security 3.2.0   （安全框架）
+9、 集成shiro                   （安全框架）
 10、集成JMock2.6.0			    （mock）
 11、集成Jackson					（json处理框架）
 12、集成maven3.1				 (部署打包)
