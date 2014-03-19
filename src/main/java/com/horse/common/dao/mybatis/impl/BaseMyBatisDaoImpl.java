@@ -65,7 +65,7 @@ public class BaseMyBatisDaoImpl implements BaseMyBatisDao{
 
     @Override
     public <T> List<T> query(String statement, Map<String,Object> paramMap) {
-        return queryForPage(statement, paramMap, new RowBounds());
+    	return sqlSessionTemplate.selectList(statement,paramMap);
     }
 
     @Override
