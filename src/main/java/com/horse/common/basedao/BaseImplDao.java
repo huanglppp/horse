@@ -155,8 +155,8 @@ public class BaseImplDao<M extends Serializable> {
 	}
     
     
-    public List<M> queryForPage(final int offset,final int limit) {
-        return queryForPage(null,offset,limit);
+    public List<M> queryForPage() {
+        return queryForPage(null);
     }
 
     /**
@@ -173,8 +173,8 @@ public class BaseImplDao<M extends Serializable> {
      *            要获取的集合数大小
      * @return 返回持久化对象集合
      */
-    public List<M> queryForPage(final Map<String,Object> parameter, final int offset,final int limit) {
-        return baseMyBatisDao.queryForPage(getOperationSQLName(QUERY,FOR_PAGE), parameter, offset,limit);
+    public List<M> queryForPage(final Map<String,Object> parameter) {
+        return baseMyBatisDao.queryForPage(getOperationSQLName(QUERY,FOR_PAGE), parameter);
     }
 
     /**
