@@ -45,18 +45,21 @@ public abstract class BaseServiceImpl<M extends Serializable> implements
 		//获取开始页
 		int offset = getStartRow(pageSize, currentPage);
 		
-		List<M> listUser = baseImplDao.queryForPage(parameterMap, offset, pageSize);
+		parameterMap.put("offset", offset);
+		parameterMap.put("limit", pageSize);
 		
-		return getPageJsonString(currentPage, count,pageCount, listUser);
+		List<M> list = baseImplDao.queryForPage(parameterMap);
+		
+		return getPageJsonString(currentPage,count,pageCount,list);
 	}
 
 	private String getPageJsonString(int currentPage, int count,
-			int pageCount, List<M> listUser) {
+			int pageCount, List<M> list) {
 		Map<String,Object> pageMap = new HashMap<String,Object>();
 		pageMap.put("count", count);
 		pageMap.put("pageCount", pageCount);
 		pageMap.put("currentPage", currentPage);
-		pageMap.put("items", listUser);
+		pageMap.put("items", list);
 		return JacksonUtil.writeObjectToJsonString(pageMap);
 	}
 
