@@ -6,6 +6,9 @@ import static com.horse.common.constant.ConstantsTest.USER_NAME;
 import static com.horse.common.constant.ConstantsTest.USER_PASSWORD;
 import static com.horse.common.constant.ConstantsTest.USER_TYPE;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.junit.Before;
@@ -41,10 +44,12 @@ public class UserServiceTest extends AbstractBaseSpringTest {
 		equalTo("", user.getUserCode(), user2.getUserCode());
 	}
 	
-//	@Test
-//	public void testGetUserForPage(){
-//		Map<String,Object> parameterMap = new HashMap<String,Object>();
-//		String jasonString = userService.queryForPage(parameterMap,5, 3);
-//		System.out.println(jasonString);
-//	}
+	@Test
+	public void testGetUserForPage(){
+		Map<String,Object> parameterMap = new HashMap<String,Object>();
+		//parameter.put("offset", 0);
+		//parameter.put("limit", 5);
+		String jasonString = userService.queryForPage(parameterMap,5, 3);
+		System.out.println(jasonString);
+	}
 }
