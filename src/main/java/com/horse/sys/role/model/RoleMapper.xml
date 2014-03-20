@@ -21,19 +21,25 @@
 	</insert> 
 	 <!-- 用户共用列 -->
 	<sql id="roleColumns">
-		r.RoleID, r.RoleCode, r.RoleName,
-		r.ParentRoleID, r.Remark
+		r.RoleID, r.RoleCode, r.RoleName,r.ParentRoleID, r.Remark
 	</sql>
 	
 	 <!-- 用户分页查询 -->
 	<select id="queryRoleForPage" parameterType="java.util.Map" resultMap="RoleMap">
-		select <include refid="roleColumns"/> from SYS_ROLE r 
-		<where>
-			 
+		select <include refid="roleColumns"/> 
+		from SYS_ROLE r 
+		where 1 = 1 
 			<if test="roleName !=null and roleName.trim()!=''">
 				and r.RoleName like #{roleName}
 			</if>
-		</where>
+		 and r.RoleID >= (
+			 SELECT RoleID FROM SYS_ROLE 
+			 where 1 = 1 
+				<if test="roleName !=null and roleName.trim()!=''">
+					and RoleName like #{roleName}
+				</if>
+			 ORDER BY RoleID ASC LIMIT #{offset}, 1
+		 ) ORDER BY r.RoleID ASC LIMIT #{limit} 
 	</select> 
 	<!--查询用户总数 -->
 	<select id="queryRoleForCount" parameterType="java.util.Map" resultType="int">
