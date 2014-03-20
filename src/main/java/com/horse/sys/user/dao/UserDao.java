@@ -72,7 +72,7 @@ public interface UserDao {
      * @param limit
      * @return
      */
-    public List<User> queryUserForPage(Map<String,Object> parameter,int offset,int limit);
+    public List<User> queryUserForPage(Map<String,Object> parameter);
     
     /**
      * 查询总数
