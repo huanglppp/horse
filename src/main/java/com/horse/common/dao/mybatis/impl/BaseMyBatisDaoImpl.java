@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Component;
 
@@ -55,7 +54,7 @@ public class BaseMyBatisDaoImpl implements BaseMyBatisDao{
 	
 	@Override
 	public <T> T get(String statement,Map<String,Object> paramMap){
-		return sqlSessionTemplate.selectOne(statement,paramMap);
+		return selectOne(statement,paramMap);
 	}
 	
     @Override
@@ -65,24 +64,22 @@ public class BaseMyBatisDaoImpl implements BaseMyBatisDao{
 
     @Override
     public <T> List<T> query(String statement, Map<String,Object> paramMap) {
-    	return sqlSessionTemplate.selectList(statement,paramMap);
+    	return queryForPage(statement,paramMap);
     }
 
     @Override
-   	public <T> List<T> queryForPage(String statement, int offset, int limit) {
-   		return queryForPage(statement, null,offset,limit);
+   	public <T> List<T> queryForPage(String statement) {
+   		return queryForPage(statement, null);
    	}
     
     @Override
-    public <T> List<T> queryForPage(String statement, Map<String,Object> paramMap,
-            int offset, int limit) {
-        return queryForPage(statement, paramMap, new RowBounds(offset, limit));
+    public <T> List<T> queryForPage(String statement, Map<String,Object> paramMap) {
+        return selectList(statement, paramMap);
     }
 
     
-    private <T> List<T> queryForPage(String statement, Map<String,Object> paramMap,
-            RowBounds rowBounds) {
-        return sqlSessionTemplate.selectList(statement, paramMap, rowBounds);
+    private <T> List<T> selectList(String statement, Map<String,Object> paramMap) {
+        return sqlSessionTemplate.selectList(statement, paramMap);
     }
     
     @Override
@@ -92,6 +89,10 @@ public class BaseMyBatisDaoImpl implements BaseMyBatisDao{
     
     @Override
     public <T> T queryForCount(String statement, Map<String,Object> paramMap){
+    	return selectOne(statement,paramMap);
+    }
+    
+    public <T> T selectOne(String statement, Map<String,Object> paramMap){
     	return sqlSessionTemplate.selectOne(statement,paramMap);
     }
 
