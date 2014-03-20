@@ -50,8 +50,8 @@ public class UserDaoImpl extends  BaseImplDao<User> implements UserDao {
 	}
 	
 	@Override
-	public List<User> queryUserForPage(Map<String,Object> parameter,int offset,int limit){
-		return this.queryForPage(parameter, offset, limit);
+	public List<User> queryUserForPage(Map<String,Object> parameter){
+		return this.queryForPage(parameter);
 	}
 	
 	@Override
