@@ -1,11 +1,5 @@
 package com.horse.sys.role.service;
 
- 
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
-
- 
-
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,8 +32,8 @@ public class RoleServiceTest extends AbstractBaseSpringTest {
 	@Test
 	public void testSaveUser(){
 		int i = roleService.saveRole(role);
-		assertThat("", i, not(0));
-		assertThat("", i, not(-1));
+		not("", i, 0);
+		not("", i, -1);
 	}
 	 
 	@Test

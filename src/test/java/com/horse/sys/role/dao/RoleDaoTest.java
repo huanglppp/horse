@@ -1,8 +1,5 @@
 package com.horse.sys.role.dao;
-
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThat;
+ 
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,8 +31,8 @@ public class RoleDaoTest extends AbstractBaseSpringTest {
 	@Test
 	public void testSaveUser() {
 		int i = saveUser();
-		assertThat("", i, not(0));
-		assertThat("", i, not(-1));
+		not("", i, 0);
+		not("", i, -1);
 	}
  
 	@Test
@@ -44,7 +41,7 @@ public class RoleDaoTest extends AbstractBaseSpringTest {
 		Map<String,Object> parameter = new HashMap<String,Object>();
 		parameter.put("roleName", "管理%");
 		List<Role> listRole = roleDao.queryRoleForPage(parameter, 0, 5);
-		assertThat("",listRole.size(), greaterThanOrEqualTo(1));
+		greaterThanOrEqualTo("",listRole.size(), 1);
 	}
 	
 	private int saveUser() {

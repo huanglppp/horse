@@ -5,8 +5,6 @@ import static com.horse.common.constant.ConstantsTest.USER_CODE;
 import static com.horse.common.constant.ConstantsTest.USER_NAME;
 import static com.horse.common.constant.ConstantsTest.USER_PASSWORD;
 import static com.horse.common.constant.ConstantsTest.USER_TYPE;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
 
 import org.jmock.Expectations;
 import org.jmock.auto.Mock;
@@ -16,11 +14,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.horse.AbstractBaseSpringTest;
+import com.horse.BaseTest;
 import com.horse.sys.user.dao.UserDao;
 import com.horse.sys.user.model.User;
 import com.horse.sys.user.service.impl.UserServiceImpl;
-public class UserServiceMockTest extends AbstractBaseSpringTest{
+public class UserServiceMockTest extends BaseTest{
 	 
     private UserServiceImpl userService;
 
@@ -62,7 +60,7 @@ public class UserServiceMockTest extends AbstractBaseSpringTest{
         //查询
         User user2 = userService.getUserByCode(USER_CODE);
         
-        assertThat("用户名", user2.getUserCode(), equalTo(user.getUserCode()));
+        equalTo("用户名", user2.getUserCode(), user.getUserCode());
     }
 
    

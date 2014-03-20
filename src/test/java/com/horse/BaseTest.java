@@ -1,21 +1,7 @@
-package com.horse;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.notNullValue;
+package com.horse; 
 import static org.junit.Assert.assertThat;
 
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring/spring-config.xml" })
-@TransactionConfiguration(defaultRollback=true,transactionManager="transactionManager")
-public abstract class AbstractBaseSpringTest extends AbstractTransactionalJUnit4SpringContextTests {
+public abstract class BaseTest {
 	protected  void equalTo(String reason,Object actual, Object matcher){
 		assertThat(reason,actual, org.hamcrest.Matchers.equalTo(matcher));
 	}
@@ -37,5 +23,6 @@ public abstract class AbstractBaseSpringTest extends AbstractTransactionalJUnit4
 	protected void sameInstance(String reason,Object actual,Object matcher){
 		assertThat("单例模式两实例相同",actual,org.hamcrest.Matchers.sameInstance(matcher));
 	}
+	  
 	
 }

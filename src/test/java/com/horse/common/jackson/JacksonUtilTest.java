@@ -18,17 +18,18 @@ import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import com.horse.BaseTest;
 import com.horse.common.exception.BaseException;
 import com.horse.common.util.FileUtil;
 import com.horse.sys.user.model.User;
 
-public class JacksonUtilTest {
+public class JacksonUtilTest extends BaseTest {
 	private static final String USER_MODIFY_FILE = "jackson/user-modify.json";
 	@Test
 	public void testReadObjectFromFile() throws IOException {
 		File jsonFile = FileUtil.getClassPathFile("jackson/user.json");
 		User user = JacksonUtil.readObjectFromFile(jsonFile, User.class);
-		assertThat("用户对象存在" , user.getUserCode(), equalTo("MALE"));
+		equalTo("用户对象存在" , user.getUserCode(), "MALE");
 	}
 	
 	@Test
@@ -43,7 +44,7 @@ public class JacksonUtilTest {
 		jsonString.append("	\"isValid\":\"0\"");
 		jsonString.append("}");
 		User user = JacksonUtil.readObjectFromJsonString(jsonString.toString(), User.class);
-		assertThat("用户对象存在" , user.getUserCode(), equalTo("MALE"));
+		equalTo("用户对象存在" , user.getUserCode(),"MALE");
 	}
 	
 	@Test
@@ -56,7 +57,7 @@ public class JacksonUtilTest {
 		Resource resource = new ClassPathResource(USER_MODIFY_FILE);
 		File jsonFile = resource.getFile();
 		User user1 = JacksonUtil.readObjectFromFile(jsonFile, User.class);
-		assertThat("默认缓存名称为是" , user1.getUserCode(), equalTo(USER_CODE));
+		equalTo("默认缓存名称为是" , user1.getUserCode(), USER_CODE);
 	}
 	
 	@Test
@@ -66,7 +67,7 @@ public class JacksonUtilTest {
 		listUser.add(user);
 		 
 		String userJsonString = JacksonUtil.writeObjectToJsonString(listUser);
-		assertThat("默认缓存名称为是" , userJsonString.indexOf(USER_CODE), greaterThanOrEqualTo(1));
+		greaterThanOrEqualTo("默认缓存名称为是" , userJsonString.indexOf(USER_CODE), 1);
 	}
 
 	private User createUser() {

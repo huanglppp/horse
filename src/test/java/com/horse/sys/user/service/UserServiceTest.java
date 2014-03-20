@@ -1,10 +1,10 @@
 package com.horse.sys.user.service;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
-
-import java.util.HashMap;
-import java.util.Map;
+import static com.horse.common.constant.ConstantsTest.IS_VALID;
+import static com.horse.common.constant.ConstantsTest.USER_CODE;
+import static com.horse.common.constant.ConstantsTest.USER_NAME;
+import static com.horse.common.constant.ConstantsTest.USER_PASSWORD;
+import static com.horse.common.constant.ConstantsTest.USER_TYPE;
 
 import javax.annotation.Resource;
 
@@ -13,12 +13,6 @@ import org.junit.Test;
 
 import com.horse.AbstractBaseSpringTest;
 import com.horse.sys.user.model.User;
-
-import static com.horse.common.constant.ConstantsTest.USER_CODE;
-import static com.horse.common.constant.ConstantsTest.USER_NAME;
-import static com.horse.common.constant.ConstantsTest.USER_PASSWORD;
-import static com.horse.common.constant.ConstantsTest.IS_VALID;
-import static com.horse.common.constant.ConstantsTest.USER_TYPE;
 
 public class UserServiceTest extends AbstractBaseSpringTest {
 	
@@ -44,7 +38,7 @@ public class UserServiceTest extends AbstractBaseSpringTest {
 		userService.saveUser(user);
 		
 		User user2 = userService.getByCode(USER_CODE);
-		assertThat("", user.getUserCode(), equalTo(user2.getUserCode()));
+		equalTo("", user.getUserCode(), user2.getUserCode());
 	}
 	
 //	@Test

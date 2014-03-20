@@ -12,10 +12,12 @@ import net.sf.ehcache.Element;
 
 import org.junit.Test;
 
+import com.horse.BaseTest;
+
 import static com.horse.common.constant.ConstantsTest.DICT_CACHE_NAME;
  
 
-public class CacheUtilTest {
+public class CacheUtilTest extends BaseTest{
      
     private static final String KEY="1";
     private static final String VALUE="我第一次使用缓存";
@@ -55,10 +57,6 @@ public class CacheUtilTest {
         
     }
 
-
-
-    
-
     @Test
     public void testAddAll(){
         Element e1 = new Element(KEY, VALUE);
@@ -85,21 +83,18 @@ public class CacheUtilTest {
         CacheUtil.removeElement(DICT_CACHE_NAME,KEY);
         String value_key_new = (String)CacheUtil.get(DICT_CACHE_NAME,KEY);
         assertNull(value_key_new);
-        
-         
     }
-
 
 
     private void assertValue(String expected,String actual) {
-        assertThat("默认缓存名称为是"+expected,expected,equalTo(actual));
+    	equalTo("默认缓存名称为是"+expected,expected,actual);
     }
     
     private void assertCacheSize(int actual) {
-        assertThat("默认缓存大小",CacheUtil.getSize(DICT_CACHE_NAME),equalTo(actual));
+    	equalTo("默认缓存大小",CacheUtil.getSize(DICT_CACHE_NAME),actual);
     }
     
     private void assertNull(String value_key_new) {
-        assertThat("空的",value_key_new,nullValue());
+    	nullValue("空的",value_key_new);
     }
 }

@@ -1,29 +1,27 @@
 package com.horse.common.cache;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.sameInstance;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+ 
 import net.sf.ehcache.Cache;
 
 import org.junit.Test;
 
+import com.horse.BaseTest;
+
 import static com.horse.common.constant.ConstantsTest.DICT_CACHE_NAME;
 import static com.horse.common.constant.ConstantsTest.CACHE_NAME;
 
-public class CacheSingltonTest {
+public class CacheSingltonTest extends BaseTest{
     @Test
     public void testGetInstance(){
         CacheSinglton cacheSinglton1 = CacheSinglton.getInstance();
         CacheSinglton cacheSinglton2 = CacheSinglton.getInstance();
-        assertThat("不为空",cacheSinglton1,notNullValue());
-        assertThat("单例模式两实例相同",cacheSinglton1,sameInstance(cacheSinglton2));
+        notNullValue("不为空",cacheSinglton1);
+        sameInstance("单例模式两实例相同",cacheSinglton1,cacheSinglton2);
     }
     
     @Test
     public void testGetCacheDefaultName(){
          Cache cache = CacheSinglton.getInstance().getCache(DICT_CACHE_NAME);
-         assertThat("默认缓存名称为是"+DICT_CACHE_NAME,cache.getName(),equalTo(DICT_CACHE_NAME));
+         equalTo("默认缓存名称为是"+DICT_CACHE_NAME,cache.getName(),DICT_CACHE_NAME);
     }
     
     @Test
@@ -34,14 +32,14 @@ public class CacheSingltonTest {
          cacheSinglton.addCache(cache);
          //获取缓存
          Cache newCache = cacheSinglton.getCache(CACHE_NAME);
-         assertThat("不为空",newCache,notNullValue());
-         assertThat("缓存对象相等",newCache,sameInstance(cache));
-         assertThat("默认缓存名称为是"+CACHE_NAME,newCache.getName(),equalTo(CACHE_NAME));
+         notNullValue("不为空",newCache);
+         sameInstance("缓存对象相等",newCache,cache);
+         equalTo("默认缓存名称为是"+CACHE_NAME,newCache.getName(),CACHE_NAME);
     }
     
     @Test
     public void testGetCache(){
         Cache cache = CacheSinglton.getInstance().getCache("");
-        assertThat("为空",cache,nullValue());
+        nullValue("为空",cache);
     }
 }
