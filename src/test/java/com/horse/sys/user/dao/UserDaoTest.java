@@ -113,7 +113,9 @@ public class UserDaoTest extends AbstractBaseSpringTest {
 		Map<String,Object> parameter = new HashMap<String,Object>();
 		parameter.put("userCode", "a");
 		parameter.put("userName", "a%");
-		List<User> listUser = userDao.queryUserForPage(parameter, 0, 5);
+		parameter.put("offset", 0);
+		parameter.put("limit", 5);
+		List<User> listUser = userDao.queryUserForPage(parameter);
 		greaterThanOrEqualTo("",listUser.size(), 1);
 	}
 	
