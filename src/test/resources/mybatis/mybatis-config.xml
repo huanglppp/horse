@@ -4,9 +4,7 @@
      "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<properties>
-		<property name="dialect" value="mysql"/> 
-	</properties>
+	 
 	<settings> 
 	  	<!-- 全局映射器启用缓存 -->
         <setting name="cacheEnabled" value="true" />
@@ -43,16 +41,9 @@
 		<typeAlias type="com.horse.sys.role.model.Role" alias="Role" />
 	</typeAliases>
 	
-	<plugins>
-		<plugin interceptor="com.horse.common.dao.mybatis.dialect.PaginationInterceptor"></plugin>
-	</plugins>
-	
 	<mappers>
 		<mapper resource="com/horse/sys/user/model/UserMapper.xml"/>
 		<mapper resource="com/horse/sys/role/model/RoleMapper.xml"/>
 	</mappers>
-	
 	 
-    
-	
 </configuration>  
