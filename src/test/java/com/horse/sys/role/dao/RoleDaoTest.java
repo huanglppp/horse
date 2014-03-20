@@ -40,7 +40,9 @@ public class RoleDaoTest extends AbstractBaseSpringTest {
 		//saveUser();
 		Map<String,Object> parameter = new HashMap<String,Object>();
 		parameter.put("roleName", "管理%");
-		List<Role> listRole = roleDao.queryRoleForPage(parameter, 0, 5);
+		parameter.put("offset", 5);
+		parameter.put("limit", 5);
+		List<Role> listRole = roleDao.queryRoleForPage(parameter);
 		greaterThanOrEqualTo("",listRole.size(), 1);
 	}
 	
