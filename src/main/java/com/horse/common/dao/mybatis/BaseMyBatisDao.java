@@ -108,7 +108,7 @@ public interface BaseMyBatisDao extends BaseDao {
      *            要返回的集合数大小
      * @return
      */
-    public <T> List<T> queryForPage(String statement,int offset, int limit);
+    public <T> List<T> queryForPage(String statement);
     
     /**
      * 带参数分页查询。
@@ -123,7 +123,7 @@ public interface BaseMyBatisDao extends BaseDao {
      *            要返回的集合数大小
      * @return
      */
-    public <T> List<T> queryForPage(String statement, Map<String,Object> paramMap,int offset, int limit);
+    public <T> List<T> queryForPage(String statement, Map<String,Object> paramMap);
     
     /**
      * 查询总行数
