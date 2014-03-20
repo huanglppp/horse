@@ -17,7 +17,7 @@ public class RoleDaoImpl extends  BaseImplDao<Role> implements RoleDao {
 		 return this.save(role);
 	}
 
-	public List<Role> queryRoleForPage(Map<String,Object> parameter,int offset, int limit){
-		return this.queryForPage(parameter, offset, limit);
+	public List<Role> queryRoleForPage(Map<String,Object> parameter){
+		return this.queryForPage(parameter);
 	}
 }
