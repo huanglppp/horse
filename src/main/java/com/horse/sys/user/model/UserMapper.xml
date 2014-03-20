@@ -33,8 +33,7 @@
 
 	<!-- 用户共用列 -->
 	<sql id="userColumns">
-		u.userID, u.userCode, u.userName,
-		u.userPassword, u.userType, u.isValid
+		u.userID,u.userCode,u.userName,u.userPassword,u.userType,u.isValid
 	</sql>
 
 	<!-- 根据用户编号查询用户 -->
@@ -52,17 +51,28 @@
 	</select> 
 	
 	
-	<!-- 用户分页查询 -->
+	<!-- 用户分页查询MySql分页 -->
 	<select id="queryUserForPage" parameterType="java.util.Map" resultMap="UserMap">
-		select <include refid="userColumns"/> from sys_user u 
-		<where>
+		select <include refid="userColumns"/> 
+		from sys_user u 
+		where 1=1
 			<if test="userCode != null and userCode.trim()!=''">
 				 and u.userCode = #{userCode}
 			</if>
 			<if test="userName !=null and userName.trim()!=''">
 				and u.userName like #{userName}
 			</if>
-		</where>
+	   and u.userID >= (
+	   		SELECT userID FROM sys_user 
+	   		where 1=1
+	   		<if test="userCode != null and userCode.trim()!=''">
+				 and userCode = #{userCode}
+			</if>
+			<if test="userName !=null and userName.trim()!=''">
+				and userName like #{userName}
+			</if>
+	   		ORDER BY userID ASC LIMIT #{offset}, 1
+	   )ORDER BY u.userID ASC LIMIT #{limit}
 	</select> 
 	
 	<!--查询用户总数 -->
